@@ -1,7 +1,7 @@
 var RLP = require("./rlp.js");
 
 function list(array) {
-  return array.reduceRight((a,b) => RLP["List.cons"](b)(a), RLP["List.nil"]);
+  return array.reduceRight(((a,b) => RLP["List.cons"](b)(a)), RLP["List.nil"]);
 }
 
 function array(list) {
@@ -22,9 +22,9 @@ function json_to_tree(json) {
     for (var i = 0; i < json.length; i += 2) {
       bytes.push(parseInt(json.slice(i, i+2), 16));
     }
-    return RLP["RLP.data"](list(bytes));
+    return RLP["Ether.RLP.data"](list(bytes));
   } else {
-    return RLP["RLP.node"](list(json.map(json_to_tree)));
+    return RLP["Ether.RLP.node"](list(json.map(json_to_tree)));
   }
 }
 
@@ -33,7 +33,7 @@ function byte_to_hex(val) {
 }
 
 function tree_to_json(tree) {
-  if (tree._ === "RLP.node") {
+  if (tree._ === "Ether.RLP.node") {
     var trees = [];
     var child = tree.child;
     while (child._ === "List.cons") {
@@ -54,18 +54,18 @@ function tree_to_json(tree) {
 
 function encode(json) {
   var tree = json_to_tree(json);
-  var vals = array(RLP["RLP.encode"](tree));
+  var vals = array(RLP["Ether.RLP.encode"](tree));
   console.log(vals);
   return vals.map(byte_to_hex).join("");
 }
 
 function decode(code) {
-  var tree = RLP["RLP.decode"](json_to_tree(code).value);
+  var tree = RLP["Ether.RLP.decode"](json_to_tree(code).value);
   var json = tree_to_json(tree);
   return json;
 }
 
-var a = ["905060"];
+var a = [[[[[]],[]],[[]],[]],[[[]],[]],[[]],[]];
 var b = encode(a);
 console.log(b);
 console.log(decode(b));
