@@ -367,9 +367,9 @@ module.exports = (function (){
   function IO$monad$(_new$2){var $150 = _new$2(IO$bind)(IO$end);return $150;};
   const IO$monad = x0=>IO$monad$(x0);
   const Unit$new = null;
-  const export = (()=>{var _u$1 = Ether$RLP$encode;var _u$2 = Ether$RLP$decode;var $151 = IO$monad$((_m$bind$3=>_m$pure$4=>{var $152 = _m$pure$4;return $152;}))(Unit$new);return $151;})();
+  const export$rlp = (()=>{var _u$1 = Ether$RLP$encode;var _u$2 = Ether$RLP$decode;var $151 = IO$monad$((_m$bind$3=>_m$pure$4=>{var $152 = _m$pure$4;return $152;}))(Unit$new);return $151;})();
   return {
-    '$main$': ()=>run(export),
+    '$main$': ()=>run(export$rlp),
     'run': run,
     'List': List,
     'Bool.false': Bool$false,
@@ -431,6 +431,6 @@ module.exports = (function (){
     'IO.end': IO$end,
     'IO.monad': IO$monad,
     'Unit.new': Unit$new,
-    'export': export,
+    'export.rlp': export$rlp,
   };
 })();
