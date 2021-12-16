@@ -1,4 +1,4 @@
-export: IO<Unit>
+export.rlp: IO<Unit>
   IO {
     let u = Ether.RLP.encode
     let u = Ether.RLP.decode

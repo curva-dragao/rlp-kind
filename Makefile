@@ -1,2 +1,2 @@
 rlp:
-	kind export --js --module > rlp.js
+	kind export.rlp --js --module > rlp.js
