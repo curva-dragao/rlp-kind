@@ -1,0 +1,1 @@
+#trees (((trees #trees Bytes) (List.nil U8)) #trees.head #trees.tail (((List.concat U8) (Ether.RLP.encode trees.head)) (Ether.RLP.encode.many trees.tail)))

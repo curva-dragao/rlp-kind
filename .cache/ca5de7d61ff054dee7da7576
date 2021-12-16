@@ -1,0 +1,1 @@
+#size #n (((n #n (Word size)) (Word.zero size)) #n.pred ((Word.inc size) ((Nat.to_word size) n.pred)))

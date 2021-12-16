@@ -1,0 +1,1 @@
+#size #word ((((word #word.size #word Nat) +0) #word.size #word.pred ((Nat.mul +2) ((Word.to_nat word.size) word.pred))) #word.size #word.pred (Nat.succ ((Nat.mul +2) ((Word.to_nat word.size) word.pred))))

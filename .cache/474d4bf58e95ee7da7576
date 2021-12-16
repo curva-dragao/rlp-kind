@@ -1,0 +1,1 @@
+#A #xs (((xs #xs (Maybe A)) (Maybe.none A)) #xs.head #xs.tail ((Maybe.some A) xs.head))

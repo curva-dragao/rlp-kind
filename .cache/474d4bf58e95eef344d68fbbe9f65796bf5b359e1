@@ -1,0 +1,1 @@
+%(A:*) @(default:A) @(xs:(List A)) A

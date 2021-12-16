@@ -1,0 +1,1 @@
+%U8.Self(P:@(:U8) *) @(new:@(value:(Word +8)) (P (U8.new value))) (P U8.Self)

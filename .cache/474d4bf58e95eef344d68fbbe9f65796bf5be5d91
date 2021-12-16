@@ -1,0 +1,1 @@
+#A #default #xs (((xs #xs A) default) #xs.head #xs.tail xs.head)

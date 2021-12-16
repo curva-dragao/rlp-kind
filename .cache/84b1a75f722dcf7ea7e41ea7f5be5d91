@@ -1,0 +1,1 @@
+#bytes (((Maybe.default Ether.RLP) ((List.head Ether.RLP) (Ether.RLP.decode.many bytes))) (Ether.RLP.data (List.nil U8)))

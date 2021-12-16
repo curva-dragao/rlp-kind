@@ -1,0 +1,1 @@
+#bytes #acc (((bytes #bytes Nat) acc) #bytes.head #bytes.tail !digit = (U8.to_nat bytes.head); ((Bytes.to_nat.go bytes.tail) ((Nat.add ((Nat.mul acc) +256)) digit)))

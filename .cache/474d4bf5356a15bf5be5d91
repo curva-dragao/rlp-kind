@@ -1,0 +1,1 @@
+#A #xs #n (((n #n ((Pair (List A)) (List A))) ((((Pair.new (List A)) (List A)) (List.nil A)) xs)) #n.pred (((xs #xs ((Pair (List A)) (List A))) ((((Pair.new (List A)) (List A)) (List.nil A)) xs)) #xs.head #xs.tail (((((List.split A) xs.tail) n.pred) # ((Pair (List A)) (List A))) #xs #ys ((((Pair.new (List A)) (List A)) (((List.cons A) xs.head) xs)) ys))))
