@@ -1,0 +1,24 @@
+{
+  "name": "kind-rlp",
+  "version": "1.0.0",
+  "description": "JS bindings for Kind's implementation of RLP encoding",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rigille/kind-rlp.git"
+  },
+  "keywords": [
+    "rlp",
+    "ethereum",
+    "kind"
+  ],
+  "author": "Rígille S. B. Menezes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rigille/kind-rlp/issues"
+  },
+  "homepage": "https://github.com/rigille/kind-rlp#readme"
+}
