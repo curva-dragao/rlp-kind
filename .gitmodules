@@ -1,0 +1,3 @@
+[submodule "rlp"]
+	path = rlp
+	url = https://github.com/ethereumjs/rlp

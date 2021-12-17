@@ -1,14 +1,15 @@
 {
-  "name": "kind-rlp",
-  "version": "1.0.0",
-  "description": "JS bindings for Kind's implementation of RLP encoding",
-  "main": "main.js",
+  "name": "rlp-kind",
+  "version": "0.1.0",
+  "description": "Bindings for Kind's implementation of RLP encoding.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter spec --require ts-node/register test/*.spec.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rigille/kind-rlp.git"
+    "url": "git+https://github.com/rigille/rlp-kind.git"
   },
   "keywords": [
     "rlp",
@@ -18,7 +19,17 @@
   "author": "Rígille S. B. Menezes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rigille/kind-rlp/issues"
+    "url": "https://github.com/rigille/rlp-kind/issues"
   },
-  "homepage": "https://github.com/rigille/kind-rlp#readme"
+  "homepage": "https://github.com/rigille/rlp-kind#readme",
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^17.0.0",
+    "mocha": "^9.1.3",
+    "ts-node": "^10.4.0"
+  },
+  "dependencies": {
+    "bn.js": "^5.2.0"
+  }
 }
