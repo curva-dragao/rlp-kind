@@ -7,9 +7,10 @@ export type List<T> = { _: "List.nil" } | { _: "List.cons"; head: T; tail: List<
 
 export type Bytes = List<U8>;
 
-export type RLP =
-  | { _: "Ether.RLP.data"; value: List<U8> }
-  | { _: "Ether.RLP.node"; child: List<RLP> };
+export type RLP = RLPData | RLPNode;
+
+export type RLPData = { _: "Ether.RLP.data"; value: List<U8> };
+export type RLPNode = { _: "Ether.RLP.node"; child: List<RLP> }
 
 export interface _RLPTypes {
   "List.cons": <T>(head: T) => (tail: List<T>) => List<T>;
