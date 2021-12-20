@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "mocha --reporter spec --require ts-node/register test/*.spec.ts"
+    "test": "mocha --reporter spec --require ts-node/register ./test/*.spec.ts"
   },
   "repository": {
     "type": "git",

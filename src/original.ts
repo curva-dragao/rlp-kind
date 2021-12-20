@@ -51,6 +51,7 @@ function intToBuffer(integer: number | bigint): Buffer {
   const hex = intToHex(integer);
   return Buffer.from(hex, "hex");
 }
+
 /** Transform anything into a Buffer */
 export function toBuffer(v: Input): Buffer {
   if (!Buffer.isBuffer(v)) {

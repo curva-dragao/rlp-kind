@@ -2,7 +2,7 @@ import type { Input } from "./original";
 import { toBuffer } from "./original";
 
 import rlp_lib from "./rlp_typed";
-import type { List, RLP, RLPData } from "./rlp_typed";
+import type { List, RLPTree, RLPData } from "./rlp_typed";
 
 const List$cons = rlp_lib["List.cons"];
 const List$nil = rlp_lib["List.nil"];
@@ -26,7 +26,7 @@ function to_array<T>(list: List<T>) {
   return array;
 }
 
-function obj_to_rlp_tree(obj: RLPObj): RLP {
+function obj_to_rlp_tree(obj: RLPObj): RLPTree {
   if (typeof obj === "string") {
     // if (json.length % 2 !== 0 || !/^[0-9a-f]*$/.test(json)) {
     //   throw "Invalid hex.";
@@ -55,7 +55,7 @@ function obj_to_rlp_tree(obj: RLPObj): RLP {
 //   return ("00" + val.toString(16)).slice(-2);
 // }
 
-function rlp_tree_to_obj(tree: RLP): RLPObj {
+function rlp_tree_to_obj(tree: RLPTree): RLPObj {
   if (tree._ === "Ether.RLP.node") {
     var trees = [];
     var child = tree.child;
@@ -97,7 +97,7 @@ function input_to_rlp_obj(input: Input): RLPObj {
   }
 }
 
-function encode(input: Input): Buffer {
+export function encode(input: Input): Buffer {
   // var tree = obj_to_rlp_tree(json);
   // var vals = to_array(Ether$RLP$encode(tree));
   // console.log(vals);
@@ -125,19 +125,26 @@ export function decode(input: Input): RLPObj {
 
 // ==== //
 
+// const RLP = {encode, decode};
+// import assert from 'assert';
+
+// const encodedSelf = RLP.encode('a')
+// assert.equal(encodedSelf.toString(), 'a')
+// assert.equal(RLP.getLength(encodedSelf), 1)
+
 // ==== //
 
-var a = [[[[[]], []], [[]], []], [[[]], []], [[]], []];
-var b = encode(a);
-console.log("encoded:", b);
-console.log("decoded:", decode(b));
+// var a = [[[[[]], []], [[]], []], [[[]], []], [[]], []];
+// var b = encode(a);
+// console.log("encoded:", b);
+// console.log("decoded:", decode(b));
 
 // console.log(
 //   // JSON.stringify(
 //     rlp_tree_to_obj(
 //       obj_to_rlp_tree(
 //         rlp_tree_to_obj(
-//           obj_to_rlp_tree(input_to_rlp_obj(["010203", "77aa", ["99"], "88"])),
+//           obj_to_rlp_tree(input_to_rlp_obj(["0x010203", "0x77aa", ["0x99"], "0x88"])),
 //         ),
 //       ),
 //     ),
