@@ -6,11 +6,13 @@ import rlp_lib from "./rlp_typed";
 
 export { getLength } from "./original";
 
+/* tslint:disable: variable-name */
 const List$cons = rlp_lib["List.cons"];
 const List$nil = rlp_lib["List.nil"];
 const Ether$RLP$node = rlp_lib["Ether.RLP.node"];
 const Ether$RLP$encode = rlp_lib["Ether.RLP.encode"];
 const Ether$RLP$decode = rlp_lib["Ether.RLP.decode"];
+/* tslint:enable */
 
 type BufferTree = Buffer | BufferTree[];
 
@@ -19,7 +21,7 @@ function to_list<T>(array: T[]): List<T> {
 }
 
 function to_array<T>(list: List<T>): T[] {
-  var array = [];
+  const array = [];
   while (list._ === "List.cons") {
     array.push(list.head);
     list = list.tail;
@@ -42,8 +44,8 @@ function buf_tree_to_internal_tree(obj: BufferTree): RLPTree {
 
 function internal_tree_to_buf_tree(tree: RLPTree): BufferTree {
   if (tree._ === "Ether.RLP.node") {
-    var trees = [];
-    var child = tree.child;
+    const trees = [];
+    let child = tree.child;
     while (child._ === "List.cons") {
       trees.push(internal_tree_to_buf_tree(child.head));
       child = child.tail;
