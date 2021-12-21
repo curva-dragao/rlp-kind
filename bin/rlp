@@ -18,7 +18,7 @@ if (command === 'encode') {
   try {
     console.log(baToJSON(rlp.decode(raw)))
   } catch (e) {
-    console.log('invalid RLP' + e)
+    console.log('invalid RLP: ' + e)
   }
 }
 

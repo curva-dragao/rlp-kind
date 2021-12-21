@@ -12,6 +12,7 @@ const List$nil = rlp_lib["List.nil"];
 const Ether$RLP$node = rlp_lib["Ether.RLP.node"];
 const Ether$RLP$encode = rlp_lib["Ether.RLP.encode"];
 const Ether$RLP$decode = rlp_lib["Ether.RLP.decode"];
+const Ether$RLP$decode$check = rlp_lib["Ether.RLP.decode.check"];
 /* tslint:enable */
 
 type BufferTree = Buffer | BufferTree[];
@@ -77,8 +78,12 @@ export function decode(input: Input): BufferTree {
     return Buffer.from([]);
   }
   const input_buffer = toBuffer(input);
-  const arr = Array.from(input_buffer);
-  const rlp_tree = Ether$RLP$decode(to_list(arr));
+  const bytes_arr = Array.from(input_buffer);
+  const bytes_list = to_list(bytes_arr);
+  if (!Ether$RLP$decode$check(bytes_list)) {
+    throw new Error("invalid RLP encoding");
+  }
+  const rlp_tree = Ether$RLP$decode(bytes_list);
   const result = internal_tree_to_buf_tree(rlp_tree);
   return result;
 }

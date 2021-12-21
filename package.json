@@ -8,6 +8,7 @@
     "rlp": "./bin/rlp"
   },
   "scripts": {
+    "build": "make && tsc",
     "lint": "tslint ./src/**/*.ts",
     "test": "mocha --reporter spec --require ts-node/register ./test/*.spec.ts && mocha --reporter spec ./test/*.spec.js"
   },

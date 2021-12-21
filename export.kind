@@ -1,6 +1,11 @@
 export.rlp: IO<Unit>
   IO {
+    let u = List.cons
+    let u = List.nil
+    let u = Ether.RLP.data
+    let u = Ether.RLP.node
     let u = Ether.RLP.encode
     let u = Ether.RLP.decode
+    let u = Ether.RLP.decode.check
     return unit;
   }

@@ -1,5 +1,5 @@
 // TODO: replace with `.d.ts` declaration?
-const rlp_lib: RLPLibTypes = require("./rlp.js");
+import rlp_lib from "./rlp.js";
 
 export type U8 = number;
 export type Nat = bigint;
@@ -22,6 +22,7 @@ export interface RLPLibTypes {
   "Ether.RLP.node": (child: List<RLPTree>) => RLPTree;
   "Ether.RLP.encode": (tree: RLPTree) => Bytes;
   "Ether.RLP.decode": (bytes: Bytes) => RLPTree;
+  "Ether.RLP.decode.check": (value: Bytes) => boolean;
 }
 
-export default rlp_lib;
+export default rlp_lib as RLPLibTypes;
