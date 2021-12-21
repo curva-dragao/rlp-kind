@@ -1,6 +1,6 @@
 {
   "name": "rlp-kind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bindings for Kind's implementation of RLP encoding.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
