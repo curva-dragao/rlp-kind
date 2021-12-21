@@ -36,5 +36,10 @@
   },
   "dependencies": {
     "bn.js": "^5.2.0"
-  }
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src"
+  ]
 }
