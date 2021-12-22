@@ -74,7 +74,7 @@ export function encode(input: InputTree): Buffer {
 }
 
 export function decode(input: Input): BufferTree {
-  if (!input || (input as any).length === 0) {
+  if (!input || (input instanceof Uint8Array && input?.length === 0)) {
     return Buffer.from([]);
   }
   const input_buffer = toBuffer(input);
