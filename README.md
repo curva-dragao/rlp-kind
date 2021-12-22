@@ -36,7 +36,7 @@ yarn global add rlp-kind
 
 ```js
 import * as assert from 'assert'
-import * as rlp from 'rlp'
+import * as rlp from 'rlp-kind'
 
 const nestedList = [[], [[]], [[], [[]]]]
 const encoded = rlp.encode(nestedList)
