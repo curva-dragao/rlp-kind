@@ -277,14 +277,12 @@ module.exports = (function (){
   const Ether$RLP$node = x0=>Ether$RLP$node$(x0);
   function List$(_A$1){var $23 = null;return $23;};
   const List = x0=>List$(x0);
-  const Bool$false = false;
-  const Bool$and = a0=>a1=>(a0&&a1);
   const Bool$true = true;
+  const Bool$false = false;
   const Nat$eql = a0=>a1=>(a0===a1);
   function Nat$succ$(_pred$1){var $24 = 1n+_pred$1;return $24;};
   const Nat$succ = x0=>Nat$succ$(x0);
   const List$length = a0=>(list_length(a0));
-  const Nat$lte = a0=>a1=>(a0<=a1);
   const Nat$add = a0=>a1=>(a0+a1);
   const Nat$mul = a0=>a1=>(a0*a1);
   function Word$to_nat$(_word$2){var self = _word$2;switch(self._){case 'Word.o':var $26=self.pred;var $27 = (2n*Word$to_nat$($26));var $25 = $27;break;case 'Word.i':var $28=self.pred;var $29 = Nat$succ$((2n*Word$to_nat$($28)));var $25 = $29;break;case 'Word.e':var $30 = 0n;var $25 = $30;break;};return $25;};
@@ -309,6 +307,8 @@ module.exports = (function (){
   function Nat$to_word$(_size$1,_n$2){var self = _n$2;if (self===0n) {var $50 = Word$zero$(_size$1);var $49 = $50;} else {var $51=(self-1n);var $52 = Word$inc$(Nat$to_word$(_size$1,$51));var $49 = $52;};return $49;};
   const Nat$to_word = x0=>x1=>Nat$to_word$(x0,x1);
   const Nat$to_u8 = a0=>(Number(a0)&0xFF);
+  const Nat$lte = a0=>a1=>(a0<=a1);
+  const Bool$and = a0=>a1=>(a0&&a1);
   function List$concat$(_as$2,_bs$3){var self = _as$2;switch(self._){case 'List.cons':var $54=self.head;var $55=self.tail;var $56 = List$cons$($54,List$concat$($55,_bs$3));var $53 = $56;break;case 'List.nil':var $57 = _bs$3;var $53 = $57;break;};return $53;};
   const List$concat = x0=>x1=>List$concat$(x0,x1);
   function Pair$fst$(_pair$3){var self = _pair$3;switch(self._){case 'Pair.new':var $59=self.fst;var $60 = $59;var $58 = $60;break;};return $58;};
@@ -332,7 +332,7 @@ module.exports = (function (){
   const Ether$RLP$encode$length = x0=>x1=>Ether$RLP$encode$length$(x0,x1);
   function Ether$RLP$encode$many$(_trees$1){var self = _trees$1;switch(self._){case 'List.cons':var $76=self.head;var $77=self.tail;var $78 = List$concat$(Ether$RLP$encode$($76),Ether$RLP$encode$many$($77));var $75 = $78;break;case 'List.nil':var $79 = List$nil;var $75 = $79;break;};return $75;};
   const Ether$RLP$encode$many = x0=>Ether$RLP$encode$many$(x0);
-  function Ether$RLP$encode$(_tree$1){var self = _tree$1;switch(self._){case 'Ether.RLP.data':var $81=self.value;var self = (((list_length($81))===1n)&&((BigInt(List$head_with_default$(0,$81)))<=127n));if (self) {var $83 = $81;var $82 = $83;} else {var $84 = List$concat$(Ether$RLP$encode$length$(128n,(list_length($81))),$81);var $82 = $84;};var $80 = $82;break;case 'Ether.RLP.node':var $85=self.child;var _rest$3 = Ether$RLP$encode$many$($85);var $86 = List$concat$(Ether$RLP$encode$length$(192n,(list_length(_rest$3))),_rest$3);var $80 = $86;break;};return $80;};
+  function Ether$RLP$encode$(_tree$1){var self = _tree$1;switch(self._){case 'Ether.RLP.data':var $81=self.value;var _length_one$3 = ((list_length($81))===1n);var _nat_byte$4 = (BigInt(List$head_with_default$(0,$81)));var _small_byte$5 = (_nat_byte$4<=127n);var self = (_length_one$3&&_small_byte$5);if (self) {var $83 = $81;var $82 = $83;} else {var _encoded_length$6 = Ether$RLP$encode$length$(128n,(list_length($81)));var $84 = List$concat$(_encoded_length$6,$81);var $82 = $84;};var $80 = $82;break;case 'Ether.RLP.node':var $85=self.child;var _rest$3 = Ether$RLP$encode$many$($85);var _encoded_length$4 = Ether$RLP$encode$length$(192n,(list_length(_rest$3)));var $86 = List$concat$(_encoded_length$4,_rest$3);var $80 = $86;break;};return $80;};
   const Ether$RLP$encode = x0=>Ether$RLP$encode$(x0);
   function Maybe$default$(_m$2,_a$3){var self = _m$2;switch(self._){case 'Maybe.some':var $88=self.value;var $89 = $88;var $87 = $89;break;case 'Maybe.none':var $90 = _a$3;var $87 = $90;break;};return $87;};
   const Maybe$default = x0=>x1=>Maybe$default$(x0,x1);
@@ -356,7 +356,7 @@ module.exports = (function (){
   const Ether$RLP$decode$many = x0=>Ether$RLP$decode$many$(x0);
   function Ether$RLP$decode$(_bytes$1){var $138 = Maybe$default$(List$head$(Ether$RLP$decode$many$(_bytes$1)),Ether$RLP$data$(List$nil));return $138;};
   const Ether$RLP$decode = x0=>Ether$RLP$decode$(x0);
-  function Ether$RLP$decode$check$split$(_add$1,_bytes$2){var self = _bytes$2;switch(self._){case 'List.cons':var $140=self.head;var $141=self.tail;var _fst$5 = ((BigInt($140))-_add$1<=0n?0n:(BigInt($140))-_add$1);var self = (_fst$5<=55n);if (self) {var $143 = ((list_length($141))<=_fst$5);var $142 = $143;} else {var self = (Nat$succ$((_fst$5-56n<=0n?0n:_fst$5-56n))<=(list_length($141)));if (self) {var self = Bytes$split($141)(Nat$succ$((_fst$5-56n<=0n?0n:_fst$5-56n)));switch(self._){case 'Pair.new':var $146=self.fst;var $147=self.snd;var $148 = ((list_length($147))<=Bytes$to_nat$($146));var $145 = $148;break;};var $144 = $145;} else {var $149 = Bool$false;var $144 = $149;};var $142 = $144;};var $139 = $142;break;case 'List.nil':var $150 = Bool$false;var $139 = $150;break;};return $139;};
+  function Ether$RLP$decode$check$split$(_add$1,_bytes$2){var self = _bytes$2;switch(self._){case 'List.cons':var $140=self.head;var $141=self.tail;var _fst$5 = ((BigInt($140))-_add$1<=0n?0n:(BigInt($140))-_add$1);var self = (_fst$5<=55n);if (self) {var $143 = (_fst$5<=(list_length($141)));var $142 = $143;} else {var self = (Nat$succ$((_fst$5-56n<=0n?0n:_fst$5-56n))<=(list_length($141)));if (self) {var self = Bytes$split($141)(Nat$succ$((_fst$5-56n<=0n?0n:_fst$5-56n)));switch(self._){case 'Pair.new':var $146=self.fst;var $147=self.snd;var $148 = (Bytes$to_nat$($146)<=(list_length($147)));var $145 = $148;break;};var $144 = $145;} else {var $149 = Bool$false;var $144 = $149;};var $142 = $144;};var $139 = $142;break;case 'List.nil':var $150 = Bool$false;var $139 = $150;break;};return $139;};
   const Ether$RLP$decode$check$split = x0=>x1=>Ether$RLP$decode$check$split$(x0,x1);
   function Ether$RLP$decode$check$(_bytes$1){var self = _bytes$1;switch(self._){case 'List.cons':var $152=self.head;var $153=self.tail;var _prefix$4 = (BigInt($152));var self = (_prefix$4<=127n);if (self) {var $155 = Ether$RLP$decode$check$($153);var $154 = $155;} else {var self = (_prefix$4<=191n);if (self) {var self = Ether$RLP$decode$check$split$(128n,_bytes$1);if (self) {var self = Ether$RLP$split$length$(128n,_bytes$1);switch(self._){case 'Pair.new':var $159=self.snd;var $160 = Ether$RLP$decode$check$($159);var $158 = $160;break;};var $157 = $158;} else {var $161 = Bool$false;var $157 = $161;};var $156 = $157;} else {var self = Ether$RLP$decode$check$split$(192n,_bytes$1);if (self) {var self = Ether$RLP$split$length$(192n,_bytes$1);switch(self._){case 'Pair.new':var $164=self.fst;var $165=self.snd;var $166 = (Ether$RLP$decode$check$($164)&&Ether$RLP$decode$check$($165));var $163 = $166;break;};var $162 = $163;} else {var $167 = Bool$false;var $162 = $167;};var $156 = $162;};var $154 = $156;};var $151 = $154;break;case 'List.nil':var $168 = Bool$true;var $151 = $168;break;};return $151;};
   const Ether$RLP$decode$check = x0=>Ether$RLP$decode$check$(x0);
@@ -380,13 +380,11 @@ module.exports = (function (){
     'Ether.RLP.data': Ether$RLP$data,
     'Ether.RLP.node': Ether$RLP$node,
     'List': List,
-    'Bool.false': Bool$false,
-    'Bool.and': Bool$and,
     'Bool.true': Bool$true,
+    'Bool.false': Bool$false,
     'Nat.eql': Nat$eql,
     'Nat.succ': Nat$succ,
     'List.length': List$length,
-    'Nat.lte': Nat$lte,
     'Nat.add': Nat$add,
     'Nat.mul': Nat$mul,
     'Word.to_nat': Word$to_nat,
@@ -402,6 +400,8 @@ module.exports = (function (){
     'Word.inc': Word$inc,
     'Nat.to_word': Nat$to_word,
     'Nat.to_u8': Nat$to_u8,
+    'Nat.lte': Nat$lte,
+    'Bool.and': Bool$and,
     'List.concat': List$concat,
     'Pair.fst': Pair$fst,
     'Pair': Pair,
