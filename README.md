@@ -1,13 +1,12 @@
 # rlp-kind
 
-[Recursive Length Prefix](https://eth.wiki/en/fundamentals/rlp) Encoding for
-Node.js wrapper written in [Kind](https://github.com/kind-lang/Kind).
+Node.js wrapper for the [RLP](https://eth.wiki/en/fundamentals/rlp) Encoding
+library written in [Kind](https://github.com/kind-lang/Kind).
 
-With the [underlying
-implementation](https://github.com/kind-lang/Kind/blob/master/base/Ether/RLP/encode.kind)
-we provide a
+We provide a
 [proof](https://github.com/kind-lang/Kind/blob/master/base/Ether/RLP/encode_identity.kind)
-to ensure that all encoded RLPs will be correctly decoded.
+to ensure that all encoded RLPs will be correctly decoded in the [underlying
+implementation](https://github.com/kind-lang/Kind/blob/master/base/Ether/RLP/encode.kind).
 
 [DEMO](http://uwu.tech/App.RLP).
 
@@ -16,6 +15,7 @@ to ensure that all encoded RLPs will be correctly decoded.
 ```sh
 npm install --save rlp-kind
 ```
+
 ```sh
 yarn add rlp-kind
 ```
@@ -54,7 +54,7 @@ RLP encodes a tree of data (`Buffer`s, `String`s etc) and returns a `Buffer`.
 
 `decode(input: Input): BufferTree`
 
-Decodes an RLP encoded `Buffer`, `Array` etc and returns a tree of `Buffer`s.
+Decodes an RLP encoded `Buffer`, `String` etc and returns a tree of `Buffer`s.
 
 The input will be converted to a buffer.
 
